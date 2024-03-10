@@ -1,8 +1,12 @@
 #!/usr/bin/env python3
 import cmd
-from models.base_model import BaseModel
 from models import storage
-from datetime import datetime
+from models.base_model import BaseModel
+from models.place import Place
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.review import Review
 
 class HBNBCommand(cmd.Cmd):
     prompt = '(hbnb) '
@@ -31,7 +35,7 @@ class HBNBCommand(cmd.Cmd):
         pass
 
     def do_create(self, arg):
-        """Creates a new instance of BaseModel, saves it (to the JSON file), and prints the id."""
+        """Creates a new instance of a class, saves it (to the JSON file), and prints the id."""
         if not arg:
             print("** class name missing **")
             return
@@ -48,7 +52,7 @@ class HBNBCommand(cmd.Cmd):
         if not arg:
             print("** class name missing **")
             return
-        elif args[0] not in ["BaseModel"]:  # Add other model names here
+        elif args[0] not in ["BaseModel", "Place", "State", "City", "Amenity", "Review"]:
             print("** class doesn't exist **")
             return
         elif len(args) < 2:
@@ -66,7 +70,7 @@ class HBNBCommand(cmd.Cmd):
         if not arg:
             print("** class name missing **")
             return
-        elif args[0] not in ["BaseModel"]:  # Add other model names here
+        elif args[0] not in ["BaseModel", "Place", "State", "City", "Amenity", "Review"]:
             print("** class doesn't exist **")
             return
         elif len(args) < 2:
@@ -82,10 +86,13 @@ class HBNBCommand(cmd.Cmd):
     def do_all(self, arg):
         """Prints all string representations of all instances based or not on the class name."""
         args = arg.split()
-        if args and args[0] not in ["BaseModel"]:  # Add other model names here
+        if args and args[0] not in ["BaseModel", "Place", "State", "City", "Amenity", "Review"]:
             print("** class doesn't exist **")
             return
-        print([str(obj) for obj in storage.all().values()])
+        if args:
+            print([str(obj) for obj in storage.all().values() if type(obj).__name__ == args[0]])
+        else:
+            print([str(obj) for obj in storage.all().values()])
 
     def do_update(self, arg):
         """Updates an instance based on the class name and id by adding or updating attribute."""
@@ -93,7 +100,7 @@ class HBNBCommand(cmd.Cmd):
         if not arg:
             print("** class name missing **")
             return
-        elif args[0] not in ["BaseModel"]:  # Add other model names here
+        elif args[0] not in ["BaseModel", "Place", "State", "City", "Amenity", "Review"]:
             print("** class doesn't exist **")
             return
         elif len(args) < 2:
