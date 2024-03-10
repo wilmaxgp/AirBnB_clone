@@ -66,19 +66,40 @@ class HBNBCommand(cmd.Cmd):
         else:
             print("** no instance found **")
 
+    # def do_destroy(self, arg):
+    #     """Deletes an instance based on the class name and id (save the change into the JSON file)."""
+    #     args = arg.split()
+    #     if not arg:
+    #         print("** class name missing **")
+    #         return
+    #     elif args[0] not in ["BaseModel", "Place", "State", "City", "Amenity", "Review"]:
+    #         print("** class doesn't exist **")
+    #         return
+    #     elif len(args) < 2:
+    #         print("** instance id missing **")
+    #         return
+    #     obj_key = args[0] + "." + args[1]
+    #     if obj_key in storage.all():
+    #         del storage.all()[obj_key]
+    #         storage.save()
+    #     else:
+    #         print("** no instance found **")
+
     def do_destroy(self, arg):
         """Deletes an instance based on the class name and id (save the change into the JSON file)."""
         args = arg.split()
         if not arg:
             print("** class name missing **")
             return
-        elif args[0] not in ["BaseModel", "Place", "State", "City", "Amenity", "Review"]:
-            print("** class doesn't exist **")
-            return
         elif len(args) < 2:
             print("** instance id missing **")
             return
-        obj_key = args[0] + "." + args[1]
+        class_name = args[0]
+        obj_id = args[1]
+        if class_name not in ["BaseModel", "Place", "State", "City", "Amenity", "Review"]:
+            print("** class doesn't exist **")
+            return
+        obj_key = class_name + "." + obj_id
         if obj_key in storage.all():
             del storage.all()[obj_key]
             storage.save()
