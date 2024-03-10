@@ -83,16 +83,28 @@ class HBNBCommand(cmd.Cmd):
         else:
             print("** no instance found **")
 
+    # def do_all(self, arg):
+    #     """Prints all string representations of all instances based or not on the class name."""
+    #     args = arg.split()
+    #     if args and args[0] not in ["BaseModel", "Place", "State", "City", "Amenity", "Review"]:
+    #         print("** class doesn't exist **")
+    #         return
+    #     if args:
+    #         print([str(obj) for obj in eval(args[0]).all()])
+    #     else:
+    #         print([str(obj) for obj in storage.all().values()])
+
+    # 
+    
     def do_all(self, arg):
-        """Prints all string representations of all instances based or not on the class name."""
+        """Prints all string representations of all instances based on the class name."""
         args = arg.split()
-        if args and args[0] not in ["BaseModel", "Place", "State", "City", "Amenity", "Review"]:
+        class_name = args[0] if args else None
+        if class_name not in ["BaseModel", "User", "Place", "State", "City", "Amenity", "Review"]:
             print("** class doesn't exist **")
             return
-        if args:
-            print([str(obj) for obj in storage.all().values() if type(obj).__name__ == args[0]])
-        else:
-            print([str(obj) for obj in storage.all().values()])
+        print([str(obj) for obj in storage.all().values() if isinstance(obj, eval(class_name))])
+
 
     def do_update(self, arg):
         """Updates an instance based on the class name and id by adding or updating attribute."""
