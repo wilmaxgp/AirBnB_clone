@@ -1,6 +1,3 @@
-import uuid
-from datetime import datetime
-
 class BaseModel:
     """
     Base class for other classes with common attributes/methods.
@@ -33,11 +30,12 @@ class BaseModel:
         """
         return "[{}] ({}) {}".format(self.__class__.__name__, self.id, self.__dict__)
 
-    def save(self):
+    def save(self, storage):
         """
-        Updates updated_at attribute with current datetime.
+        Updates updated_at attribute with current datetime and saves to storage.
         """
         self.updated_at = datetime.now()
+        storage.save()
 
     def to_dict(self):
         """
