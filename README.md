@@ -1,4 +1,4 @@
-## Airbnb_Clone Project
+# Airbnb_Clone Project
 
 # Description of the Project
 The Airbnb project is a command-line application that simulates the functionality of the Airbnb platform. It allows users to search for accommodations, view property listings, make bookings, and manage their reservations.
