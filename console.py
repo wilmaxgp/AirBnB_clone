@@ -58,8 +58,8 @@ class HBNBCommand(cmd.Cmd):
             return
         class_name = args[0]
         obj_id = args[1]
-        if class_name not in ["BaseModel", "Place", "State", 
-                            "City", "Amenity", "Review"]:
+        if class_name not in
+        ["BaseModel", "Place", "State", "City", "Amenity", "Review"]:
             print("** class doesn't exist **")
             return
         obj_key = class_name + "." + obj_id
@@ -69,7 +69,7 @@ class HBNBCommand(cmd.Cmd):
             print("** no instance found **")
 
     def do_destroy(self, arg):
-        """Deletes an instance based on the class name and id 
+        """Deletes an instance based on the class name and id
                     (save the change into the JSON file)."""
         args = arg.split()
         if not arg:
@@ -80,8 +80,8 @@ class HBNBCommand(cmd.Cmd):
             return
         class_name = args[0]
         obj_id = args[1]
-        if class_name not in ["BaseModel", "Place",
-                     "State", "City", "Amenity", "Review"]:
+        if class_name not in
+        ["BaseModel", "Place", "State", "City", "Amenity", "Review"]:
             print("** class doesn't exist **")
             return
         obj_key = class_name + "." + obj_id
@@ -92,19 +92,21 @@ class HBNBCommand(cmd.Cmd):
             print("** no instance found **")
 
     def do_all(self, arg):
-        """Prints all string representations of 
+        """Prints all string representations of
             all instances based on the class name."""
         args = arg.split()
         class_name = args[0] if args else None
-        if class_name not in ["BaseModel", "User", "Place", 
-        "State", "City", "Amenity", "Review"]:
+        if class_name not in
+        ["BaseModel", "User", "Place", "State", "City", "Amenity", "Review"]:
             print("** class doesn't exist **")
             return
-        print([str(obj) for obj in storage.all().values() 
-                if isinstance(obj, eval(class_name))])
+        print(
+            [str(obj) for obj in storage.all().values()
+                if isinstance(obj, eval(class_name))]
+            )
 
     def do_update(self, arg):
-        """Updates an instance based on the class name 
+        """Updates an instance based on the class name
         and id by adding or updating attribute."""
         args = arg.split()
         if not arg:
@@ -123,8 +125,8 @@ class HBNBCommand(cmd.Cmd):
         obj_id = args[1]
         attribute_name = args[2]
         attribute_value = args[3]
-        if class_name not in ["BaseModel", "Place", 
-                    "State", "City", "Amenity", "Review"]:
+        if class_name not in
+        ["BaseModel", "Place", "State", "City", "Amenity", "Review"]:
             print("** class doesn't exist **")
             return
         obj_key = class_name + "." + obj_id
@@ -140,13 +142,17 @@ class HBNBCommand(cmd.Cmd):
         if not arg:
             print("** class name missing **")
             return
-        elif args[0] not in ["BaseModel", "User", "Place", 
-                    "State", "City", "Amenity", "Review"]:
+        elif args[0] not in
+        ["BaseModel", "User", "Place", "State", "City", "Amenity", "Review"]:
             print("** class doesn't exist **")
             return
-        print(len([obj for obj in storage.all().values() 
-                if isinstance(obj, eval(args[0]))]))
+        print(
+            len(
+                [obj for obj in storage.all().values()
+                    if isinstance(obj, eval(args[0]))]
+            )
+        )
 
 
 if __name__ == '__main__'
-    HBNBCommand().cmdloop()
+HBNBCommand().cmdloop()
