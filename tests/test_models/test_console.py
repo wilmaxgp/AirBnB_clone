@@ -58,7 +58,9 @@ class TestConsole(unittest.TestCase):
         with patch('sys.stdout', new=StringIO()) as f:
             self.console.onecmd("create BaseModel")
             obj_id = f.getvalue().strip()
-            self.console.onecmd(f"update BaseModel {obj_id} {{'name': 'test'}}")
+            self.console.onecmd(
+                f"update BaseModel {obj_id} {{'name': 'test'}}"
+            )
             self.console.onecmd(f"show BaseModel {obj_id}")
             self.assertIn("name", f.getvalue())
             self.assertIn("test", f.getvalue())
