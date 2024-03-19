@@ -1,0 +1,39 @@
+.filters .locations ul,
+.filters .amenities ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.filters .locations ul li,
+.filters .amenities ul li {
+    margin-bottom: 10px;
+}
+
+.filters .locations ul li:first-child,
+.filters .amenities ul li:first-child {
+    border-top: 1px solid #DDDDDD;
+}
+
+.filters .locations ul li:last-child,
+.filters .amenities ul li:last-child {
+    border-bottom: 1px solid #DDDDDD;
+}
+
+.filters .locations ul li h2,
+.filters .amenities ul li h2 {
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.filters .locations ul li ul,
+.filters .amenities ul li ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.filters .locations ul li ul li,
+.filters .amenities ul li ul li {
+    margin-left: 20px;
+}
